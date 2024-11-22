@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
 import Login from './Login'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useDispatch } from 'react-redux';
+import { addUserData, removeUserData } from '../utils/appStoreSlices/userDataSlice';
 
 const Body = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const {uid, email, displayName } = user;
+        dispatch(addUserData({Uid : uid, Email : email, DisplayName : displayName}));
+      } else {
+        dispatch(removeUserData());
+      }
+    });
+  }, [])
   return (
     <div>
         <Header/>
