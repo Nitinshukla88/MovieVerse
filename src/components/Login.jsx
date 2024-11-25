@@ -3,17 +3,16 @@ import { checkCredentials } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUserData, userSignedIn } from "../utils/appStoreSlices/userDataSlice";
+import { addUserData } from "../utils/appStoreSlices/userDataSlice";
+import { PHOTO_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [validateMsg, setValidateMsg] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef(null);
@@ -35,18 +34,26 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          updateProfile(auth.currentUser, {
-            displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/143546627?v=4"
-          }).then(() => {
-            const {uid, email, displayName, photoURL} = auth.currentUser;
-            console.log(photoURL);
-            dispatch(addUserData({Uid : uid, Email : email, DisplayName : displayName, photoURL : photoURL}))
-          }).catch((error) => {
-            // An error occurred
-            // ...
-          });
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: PHOTO_URL
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUserData({
+                  Uid: uid,
+                  Email: email,
+                  DisplayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
           setValidateMsg("Registration successful. Please sign in!");
         })
         .catch((error) => {
@@ -61,9 +68,8 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          dispatch(userSignedIn(true));
           const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
