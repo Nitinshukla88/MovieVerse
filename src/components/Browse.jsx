@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
-import { OPTIONS } from '../utils/constants'
+import useGetMovieData from '../hooks/useGetMovieData'
+import MainContainer from './MainContainer';
+import SecondaryContainer from './SecondaryContainer';
 
 const Browse = () => {
 
-  const getMovies = async ()=> {
-    const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', OPTIONS);
-    const movieData = await data.json();
-    console.log(movieData);
-  }
-
-  useEffect(()=> {
-    getMovies();
-  }, []);
+  useGetMovieData(); // custom hook for making code clean
 
   return (
     <div>
       <Header/>
+      <div className='absolute top-0 left-0 -z-10'>
+      <MainContainer/>
+      <SecondaryContainer/>
+      </div>
+
     </div>
   )
 }
