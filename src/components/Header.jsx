@@ -8,6 +8,7 @@ import {
 } from "../utils/appStoreSlices/userDataSlice";
 import { useNavigate } from "react-router-dom";
 import { LOGO } from "../utils/constants";
+import { toggleGPTPage } from "../utils/appStoreSlices/gptSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -43,6 +44,10 @@ const Header = () => {
     return () => unsubscribe();
   }, [dispatch, navigate]);
 
+  const handleToggleGPTPage = () => {
+    dispatch(toggleGPTPage());
+  }
+
   return (
     <div className="bg-gradient-to-b from-black flex justify-between">
       <img src={LOGO} alt="logo" className="h-20 w-48 ml-28" />
@@ -51,13 +56,14 @@ const Header = () => {
           <img
             src={user?.photoURL}
             alt="user-img"
-            className="h-10 w-10 rounded-full mt-4"
+            className="h-10 w-10 mt-4 rounded-sm"
           />
-          <button className="bg-red-600 text-white font-bold px-3 h-12 m-3">
+          <button className="bg-purple-700 rounded-sm font-semibold text-white px-3 m-3 h-12" onClick={handleToggleGPTPage}>Try NetFlix-GPT</button>
+          <button className="bg-red-600 text-white rounded-sm font-bold px-3 h-12 m-3">
             Welcome {user?.DisplayName}
           </button>
           <button
-            className="bg-red-600 text-white font-bold px-3 h-12 m-3"
+            className="bg-red-600 text-white rounded-sm font-bold px-3 h-12 m-3"
             onClick={handleSignOut}
           >
             Sign out
