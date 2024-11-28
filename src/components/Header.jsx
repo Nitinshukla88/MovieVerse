@@ -7,11 +7,13 @@ import {
   removeUserData,
 } from "../utils/appStoreSlices/userDataSlice";
 import { useNavigate } from "react-router-dom";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGPTPage } from "../utils/appStoreSlices/gptSlice";
+import { changeLanguage } from "../utils/appStoreSlices/appConfig";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
+  const isGPTSearchPagePresent = useSelector(store=> store.gpt.showGPTPage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,6 +50,10 @@ const Header = () => {
     dispatch(toggleGPTPage());
   }
 
+  const handleLangChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  }
+
   return (
     <div className="bg-gradient-to-b from-black flex justify-between">
       <img src={LOGO} alt="logo" className="h-20 w-48 ml-28" />
@@ -58,12 +64,15 @@ const Header = () => {
             alt="user-img"
             className="h-10 w-10 mt-4 rounded-sm"
           />
-          <button className="bg-purple-700 rounded-sm font-semibold text-white px-3 m-3 h-12" onClick={handleToggleGPTPage}>Try NetFlix-GPT</button>
-          <button className="bg-red-600 text-white rounded-sm font-bold px-3 h-12 m-3">
+          {isGPTSearchPagePresent && <select className="h-10 mt-4 ml-3 p-2 rounded-sm" onChange={handleLangChange}> 
+            {SUPPORTED_LANGUAGES.map(lang=> <option value={lang?.identifier} key={lang?.identifier}>{lang?.name}</option>)}  
+          </select>}
+          <button className="bg-purple-700 rounded-sm font-semibold text-white px-3 ml-3 my-4 h-10" onClick={handleToggleGPTPage}>{isGPTSearchPagePresent ? "HomePage" : "Try NetFlix-GPT"}</button>
+          <button className="bg-red-600 text-white rounded-sm font-bold px-3 h-10 ml-3 my-4">
             Welcome {user?.DisplayName}
           </button>
           <button
-            className="bg-red-600 text-white rounded-sm font-bold px-3 h-12 m-3"
+            className="bg-red-600 text-white rounded-sm font-bold px-3 h-10 mx-3 my-4"
             onClick={handleSignOut}
           >
             Sign out
