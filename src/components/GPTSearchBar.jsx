@@ -13,7 +13,7 @@ const GPTSearchBar = () => {
   const getGPTSearchedMovies = async(movie) => {
     const movieData = await fetch("https://api.themoviedb.org/3/search/movie?query="+movie+"&include_adult=false&language=en-US&page=1", OPTIONS);
     const jsonData = await movieData.json();
-    return jsonData;
+    return jsonData.results;
   }
 
   const handleGPTSearchClick = async () => {
@@ -34,7 +34,7 @@ const GPTSearchBar = () => {
 
     const searchedMovieResults = GPTdata.map(movie=> getGPTSearchedMovies(movie));
     const extractedMovieData = await Promise.all(searchedMovieResults);
-    dispatch(addGPTSearchMovies(extractedMovieData));
+    dispatch(addGPTSearchMovies({GPTMovies : GPTdata, GPTMoviesData : extractedMovieData}));
   };
 
   return (
