@@ -2,7 +2,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ moviesData, movieTitle }) => {
-  console.log(moviesData);
   if (!moviesData) return;
   return (
     <div className="w-screen p-8 overflow-hidden">
