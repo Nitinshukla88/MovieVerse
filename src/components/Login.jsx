@@ -86,7 +86,7 @@ const Login = () => {
     <div className="">
       <div className="bg-black h-[38rem] md:w-[30rem] w-[20rem] mx-auto mt-2 bg-opacity-70">
         <form action="" onSubmit={(e) => e.preventDefault()}>
-          <h1 className="text-white font-bold text-4xl pl-20 mb-6 pt-14">
+          <h1 className="text-white font-bold md:text-4xl text-2xl md:pl-20 pl-12 md:mb-6 mb-4 md:pt-14 pt-7">
             {isSignInForm ? "Sign in" : "Sign up"}
           </h1>
           {!isSignInForm && (
@@ -94,7 +94,7 @@ const Login = () => {
               ref={name}
               type="text"
               name="name"
-              className="w-2/3 p-4 ml-20 rounded-sm my-2 bg-gray-500 bg-opacity-40 text-white"
+              className="w-2/3 md:p-4 px-4 py-2 md:ml-20 ml-12 rounded-sm my-2 bg-gray-500 bg-opacity-40 text-white md:text-base text-sm"
               placeholder="Full Name"
             />
           )}
@@ -102,49 +102,49 @@ const Login = () => {
             ref={email}
             type="email"
             name="email"
-            className="w-2/3 p-4 ml-20 rounded-sm my-2 bg-gray-500 bg-opacity-40 text-white"
+            className="w-2/3 md:p-4 px-4 py-2 md:ml-20 ml-12 rounded-sm my-2 bg-gray-500 bg-opacity-40 text-white md:text-base text-sm"
             placeholder="Email"
           />
           <input
             ref={password}
             type="password"
             name="password"
-            className="w-2/3 p-4 ml-20 rounded-sm my-2 bg-gray-500 text-white bg-opacity-40"
+            className="w-2/3 md:p-4 px-4 py-2 md:ml-20 ml-12 rounded-sm my-2 bg-gray-500 bg-opacity-40 text-white md:text-base text-sm"
             placeholder="Password"
           />
         </form>
         <p className="text-red-600 font-semibold ml-20 mt-2">{validateMsg}</p>
         <button
           type="submit"
-          className="bg-red-600 text-white w-2/3 px-4 py-2 font-semibold ml-20 rounded-sm my-2 "
+          className="bg-red-600 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm"
           onClick={handleSignIn}
         >
           {isSignInForm ? "Sign in" : "Sign up"}
         </button>
-        {isSignInForm && <p className="text-center text-gray-300 my-2">OR</p>}
+        {isSignInForm && <p className="text-center text-gray-300 my-2 md:text-base text-sm">OR</p>}
         {isSignInForm && (
-          <button className="bg-gray-500 bg-opacity-40 text-white w-2/3 px-4 py-2 font-semibold ml-20 rounded-sm my-2 ">
+          <button className="bg-gray-500 bg-opacity-40 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm">
             Use a sign-in-code
           </button>
         )}
         {isSignInForm && (
-          <p className="text-center text-white m-3">Forgot password?</p>
+          <p className="text-center text-white m-3 md:text-base text-sm">Forgot password?</p>
         )}
         {isSignInForm ? (
-          <p className="text-gray-300 ml-20 mt-2">
+          <p className="text-gray-300 md:ml-20 ml-12 mt-2">
             New to Netflix?{" "}
             <span
-              className="font-semibold text-white hover:underline cursor-pointer"
+              className="font-semibold text-white hover:underline cursor-pointer md:text-base text-sm"
               onClick={toggleSignIn}
             >
               Sign up now.
             </span>
           </p>
         ) : (
-          <p className="text-gray-300 ml-20 mt-2">
+          <p className="text-gray-300 md:ml-20 ml-12 mt-2">
             Already a user?{" "}
             <span
-              className="font-semibold text-white hover:underline cursor-pointer"
+              className="font-semibold text-white hover:underline cursor-pointer md:text-base text-sm"
               onClick={toggleSignIn}
             >
               Sign in now.
