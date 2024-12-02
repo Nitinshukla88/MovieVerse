@@ -7,6 +7,7 @@ import { addGPTSearchMovies } from "../utils/appStoreSlices/gptSlice";
 
 const GPTSearchBar = () => {
   const langkey = useSelector((store) => store.config.lang);
+  const searchedMoviesData = useSelector(store=> store.gpt.gptSearchedMoviesData);
   const dispatch = useDispatch();
   const searchText = useRef(null);
 
@@ -29,8 +30,9 @@ const GPTSearchBar = () => {
       here above is the logic to fetch the data from Open-ai API key and until we will not get the actual API key, let assume the data we get is ['Andaz apna apna', 'Golmaal', 'hera pheri', 'dhamaal', 'grand masti']
        **/
     }
+    if(searchedMoviesData) return;
 
-    const GPTdata = ['Andaz apna apna', 'Golmaal', 'Hera pheri', 'Dhamaal', 'Grand masti'];  // We are hardcoding this just for now.
+    const GPTdata = ['Raaz', 'Bhoot', '1920', 'Murder', 'Ek thi daayan'];  // We are hardcoding this just for now.
 
     const searchedMovieResults = GPTdata.map(movie=> getGPTSearchedMovies(movie));
     const extractedMovieData = await Promise.all(searchedMovieResults);
