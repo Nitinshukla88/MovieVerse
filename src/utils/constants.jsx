@@ -9,7 +9,7 @@ export const OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer"+process.env.REACT_APP_OPTIONS_KEY,
+      "Bearer "+process.env.REACT_APP_OPTIONS_KEY,
   },
 };
 
