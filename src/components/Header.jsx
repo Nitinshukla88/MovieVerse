@@ -8,7 +8,7 @@ import {
 } from "../utils/appStoreSlices/userDataSlice";
 import { useNavigate } from "react-router-dom";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
-import { toggleGPTPage } from "../utils/appStoreSlices/gptSlice";
+import { removeGPTSearchedMovies, toggleGPTPage } from "../utils/appStoreSlices/gptSlice";
 import { changeLanguage } from "../utils/appStoreSlices/appConfig";
 
 const Header = () => {
@@ -19,7 +19,10 @@ const Header = () => {
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {})
+      .then(() => {
+        isGPTSearchPagePresent && dispatch(toggleGPTPage());
+        dispatch(removeGPTSearchedMovies());
+      })
       .catch((error) => {
         // An error happened.
       });
