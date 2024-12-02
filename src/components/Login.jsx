@@ -84,7 +84,7 @@ const Login = () => {
   };
   return (
     <div className="">
-      <div className="bg-black h-[38rem] w-[30rem] mx-auto mt-2 bg-opacity-70">
+      <div className="bg-black h-[38rem] md:w-[30rem] w-[20rem] mx-auto mt-2 bg-opacity-70">
         <form action="" onSubmit={(e) => e.preventDefault()}>
           <h1 className="text-white font-bold text-4xl pl-20 mb-6 pt-14">
             {isSignInForm ? "Sign in" : "Sign up"}

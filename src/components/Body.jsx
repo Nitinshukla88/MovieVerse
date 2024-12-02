@@ -10,7 +10,7 @@ const Body = () => {
       <img
         src={BG_IMAGE_URL}
         alt="bg-image"
-        className="absolute top-0 left-0 -z-20 bg w-full h-full"
+        className="absolute top-0 left-0 -z-20 bg w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-black opacity-50 -z-10"></div>
       <Login />

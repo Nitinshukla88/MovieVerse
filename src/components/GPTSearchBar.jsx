@@ -32,7 +32,7 @@ const GPTSearchBar = () => {
     }
     if(searchedMoviesData) return;
 
-    const GPTdata = ['Raaz', 'Bhoot', '1920', 'Murder', 'Ek thi daayan'];  // We are hardcoding this just for now.
+    const GPTdata = ['Raaz', 'Bhoot', '1920', 'Murder', 'Dhamaal'];  // We are hardcoding this just for now.
 
     const searchedMovieResults = GPTdata.map(movie=> getGPTSearchedMovies(movie));
     const extractedMovieData = await Promise.all(searchedMovieResults);
@@ -43,7 +43,7 @@ const GPTSearchBar = () => {
     <div className="flex justify-center">
       <form
         action=""
-        className="md:py-10 pb-4 flex justify-center md:w-1/2 w-4/5"
+        className="md:py-10 py-4 flex justify-center md:w-1/2 w-4/5"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
