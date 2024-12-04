@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
-import openai from "../utils/openAI";
 import { OPTIONS } from "../utils/constants";
 import { addGPTSearchMovies } from "../utils/appStoreSlices/gptSlice";
+import Groq from "groq-sdk";
 
 const GPTSearchBar = () => {
   const langkey = useSelector((store) => store.config.lang);
-  const searchedMoviesData = useSelector(store=> store.gpt.gptSearchedMoviesData);
   const dispatch = useDispatch();
   const searchText = useRef(null);
 
@@ -18,21 +17,30 @@ const GPTSearchBar = () => {
   }
 
   const handleGPTSearchClick = async () => {
-    // console.log(searchText.current.value);
-    // const chatCompletion = await openai.chat.completions.create({
-    //   messages: [{ role: 'user', content: 'Say this is a test' }],
-    //   model: 'gpt-3.5-turbo',
-    // });
-    // console.log(chatCompletion.choices)
+    const groq = new Groq({apiKey : process.env.REACT_APP_GROQ_API_KEY, dangerouslyAllowBrowser: true});
+    const prompt = `Give me 5 movie names in the form of string seperated by comma according to the prompt given ahead. Don't give any other text expect movie names. The prompt is - ${searchText.current.value}`;
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      model: "llama3-70b-8192",
+      temperature: 1,
+      max_tokens: 1024,
+      top_p: 1,
+      stream: true,
+      stop: null,
+    });
 
-    {
-      /**
-      here above is the logic to fetch the data from Open-ai API key and until we will not get the actual API key, let assume the data we get is ['Andaz apna apna', 'Golmaal', 'hera pheri', 'dhamaal', 'grand masti']
-       **/
+    let fullResponse = "";
+    for await (const chunk of chatCompletion) {
+      const content = chunk.choices[0]?.delta?.content || "";
+      fullResponse += content;
     }
-    if(searchedMoviesData) return;
 
-    const GPTdata = ['Raaz', 'Bhoot', '1920', 'Murder', 'Dhamaal'];  // We are hardcoding this just for now.
+    const GPTdata = fullResponse.split(","); 
 
     const searchedMovieResults = GPTdata.map(movie=> getGPTSearchedMovies(movie));
     const extractedMovieData = await Promise.all(searchedMovieResults);
@@ -53,7 +61,7 @@ const GPTSearchBar = () => {
           ref={searchText}
         />
         <button
-          className="px-2 md:px-3 md:text-base text-xs py-2 bg-purple-600 text-white rounded-sm mx-3 font-semibold"
+          className="px-2 md:px-3 md:text-base text-xs py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm mx-3 font-semibold"
           onClick={handleGPTSearchClick}
         >
           {lang[langkey].Search}

@@ -3,6 +3,7 @@ import Body from './components/Body';
 import Browse from './components/Browse';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
+import MoviePage from './components/MoviePage';
 
 const appRouter = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/browse",
     element : <Browse/>
+  }, 
+  {
+    path: "/browse/Movie/:id",
+    element : <MoviePage/>
   }
 ]);
 

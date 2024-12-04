@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const MainContainer = () => {
   const movieData = useSelector((store) => store.movies.movielist);
   if (movieData === null) return;
-  const movie = movieData[0];
+  const movie = movieData[0][0];
   const { id } = movie;
   return (
     <div>

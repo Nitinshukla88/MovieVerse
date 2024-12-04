@@ -13,7 +13,14 @@ export const OPTIONS = {
   },
 };
 
-export const MOVIE_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
+export const NOW_PLAYING_MOVIE_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
+export const POPULAR_MOVIE_API = 'https://api.themoviedb.org/3/movie/popular?page=1';
+export const TOP_RATED_MOVIE_API = 'https://api.themoviedb.org/3/movie/top_rated?page=1';
+export const UPCOMING_MOVIE_API = 'https://api.themoviedb.org/3/movie/upcoming?page=1';
+
+export const ALL_MOVIE_API = [NOW_PLAYING_MOVIE_API, TOP_RATED_MOVIE_API, UPCOMING_MOVIE_API, POPULAR_MOVIE_API];
+
+export const MOVIE_GENERES = ["Now Playing Movies", "Top Rated Movies", "Upcoming Movies", "Popular Movies"];
 
 export const IFRAME_URL = "https://www.youtube.com/embed/";
 

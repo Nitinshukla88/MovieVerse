@@ -14,7 +14,7 @@ const useGetMovieVideo = (movieId) => {
       OPTIONS
     );
     const json = await data.json();
-    const fetchData = json?.results.filter((video) => video.type == "Trailer");
+    const fetchData = json?.results.filter((video) => video.type === "Trailer");
 
     const movieTrailer = fetchData.length > 0 ? fetchData[0] : json?.results[0];
     dispatch(addMovieVideo(movieTrailer));

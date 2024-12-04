@@ -4,16 +4,20 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  signInAnonymously,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUserData } from "../utils/appStoreSlices/userDataSlice";
 import { PHOTO_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { toggleGuestMode } from "../utils/appStoreSlices/appConfig";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [validateMsg, setValidateMsg] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -79,6 +83,20 @@ const Login = () => {
     }
   };
 
+  const handleAnonymousSignIn = () => {
+    signInAnonymously(auth)
+  .then(() => {
+    navigate("/browse")
+    dispatch(toggleGuestMode());
+    // Signed in..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ...
+  });
+  }
+
   const toggleSignIn = () => {
     setisSignInForm(!isSignInForm);
   };
@@ -116,15 +134,15 @@ const Login = () => {
         <p className="text-red-600 font-semibold ml-20 mt-2">{validateMsg}</p>
         <button
           type="submit"
-          className="bg-red-600 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm"
+          className="bg-red-600 hover:bg-red-700 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm"
           onClick={handleSignIn}
         >
           {isSignInForm ? "Sign in" : "Sign up"}
         </button>
         {isSignInForm && <p className="text-center text-gray-300 my-2 md:text-base text-sm">OR</p>}
         {isSignInForm && (
-          <button className="bg-gray-500 bg-opacity-40 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm">
-            Use a sign-in-code
+          <button className="bg-white text-red-600 hover:text-red-700 hover:bg-opacity-95 w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm" onClick={handleAnonymousSignIn}>
+            Guest Mode
           </button>
         )}
         {isSignInForm && (
