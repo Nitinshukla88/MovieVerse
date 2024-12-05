@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { IFRAME_URL, OPTIONS } from "../utils/constants";
+import { IFRAME_URL, LOGO, OPTIONS } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovieTrailers } from "../utils/appStoreSlices/moviesDataSlice";
 
@@ -24,10 +24,16 @@ const MoviePage = () => {
     dispatch(addMovieTrailers({ id: id, key: movieTrailer?.key }));
   };
 
-
   return (
     <div className="w-screen bg-black overflow-hidden">
-      <div className="h-16 flex justify-end items-center bg-red-700"><Link to="/browse"><button className="px-3 py-2 mx-3 my-3 bg-black text-white rounded-md hover:bg-white hover:text-red-700 hover:font-semibold">HomePage</button></Link></div>
+      <div className="h-16 flex justify-end items-center bg-red-700">
+        <img src={LOGO} alt="logo" className="md:h-20 md:w-48 md:ml-28 mx-auto h-14 w-28 filter brightness-0" />
+        <Link to="/browse">
+          <button className="px-3 py-2 mx-3 my-3 bg-black text-white rounded-md hover:bg-white hover:text-red-700 hover:font-semibold">
+            HomePage
+          </button>
+        </Link>
+      </div>
       <iframe
         className="w-screen h-screen absolute top-0 left-0 -z-10"
         src={IFRAME_URL + movieTrailers?.[id] + "?autoplay=1"}
