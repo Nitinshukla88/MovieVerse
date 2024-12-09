@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
   if(!moviesList) return;
   return (
     <div className="bg-black text-white">
-      <div className="relative md:-mt-96 -mt-14">
+      <div className="relative md:-mt-96 -mt-12">
         {moviesList.map((moviesCollection, index) => <MovieList moviesData={moviesCollection} movieTitle={MOVIE_GENERES[index]} key={index}/>)}
       </div>
     </div>
