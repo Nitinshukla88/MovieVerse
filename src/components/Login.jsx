@@ -30,7 +30,7 @@ const Login = () => {
     );
 
     setValidateMsg(message);
-    if (message) return;
+    if (!isSignInForm && message) return;
     if (!isSignInForm) {
       createUserWithEmailAndPassword(
         auth,
@@ -58,12 +58,11 @@ const Login = () => {
               // An error occurred
               // ...
             });
-          setValidateMsg("Registration successful. Please sign in!");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setValidateMsg(errorCode + "-" + errorMessage);
+          setValidateMsg("User registration failed ! Please Try again.");
         });
     } else {
       signInWithEmailAndPassword(
@@ -78,7 +77,8 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setValidateMsg("User not found");
+          console.log("Sign in tried !")
+          setValidateMsg("Sign in Credentials are wrong !");
         });
     }
   };
