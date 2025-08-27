@@ -27,7 +27,7 @@ const MoviePage = () => {
   return (
     <div className="w-screen bg-black overflow-hidden">
       <div className="h-16 flex justify-end items-center bg-red-700">
-        <img src={LOGO} alt="logo" className="md:h-20 md:w-48 md:ml-28 mx-auto h-14 w-28 filter brightness-0" />
+        <h1 className="text-white font-bold md:text-5xl text-2xl md:ml-20 mx-auto">MovieVerse</h1>
         <Link to="/browse">
           <button className="px-3 py-2 mx-3 my-3 bg-black text-white rounded-md hover:bg-white hover:text-red-700 hover:font-semibold">
             HomePage

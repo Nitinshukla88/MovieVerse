@@ -77,12 +77,12 @@ const Header = () => {
             alt="user-img"
             className="md:h-10 md:w-10 md:mt-4 mt-0 rounded-sm h-3 w-3 md:mx-2 mx-1"
           />}
-          {!guestMode && <button
+          <button
             className="bg-red-600 hover:bg-red-700 text-white rounded-sm font-semibold md:px-3 px-1 md:h-10 md:mx-2 mx-1 md:my-4 my-0 h-3 md:text-base text-[0.3rem]"
             onClick={handleSignOut}
           >
-            Sign out
-          </button>}
+            {guestMode ? "Go to Login page" : "Sign out"}
+          </button>
         </div>
       )}
     </div>
