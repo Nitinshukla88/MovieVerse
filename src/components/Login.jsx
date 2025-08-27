@@ -149,7 +149,7 @@ const Login = () => {
           <p className="text-center text-white m-3 md:text-base text-sm">Forgot password?</p>
         )}
         {isSignInForm ? (
-          <p className="text-gray-300 md:ml-20 ml-12 mt-2">
+          <p className="text-gray-300 text-center mt-2">
             New to Netflix?{" "}
             <span
               className="font-semibold text-white hover:underline cursor-pointer md:text-base text-sm"
@@ -159,7 +159,7 @@ const Login = () => {
             </span>
           </p>
         ) : (
-          <p className="text-gray-300 md:ml-20 ml-12 mt-2">
+          <p className="text-gray-300 text-center mt-2">
             Already a user?{" "}
             <span
               className="font-semibold text-white hover:underline cursor-pointer md:text-base text-sm"
