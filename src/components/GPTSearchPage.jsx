@@ -1,4 +1,3 @@
-import React from 'react'
 import GPTSearchBar from './GPTSearchBar'
 import { BG_IMAGE_URL } from '../utils/constants'
 import GPTMovieSuggestions from './GPTMovieSuggestions'
@@ -10,7 +9,7 @@ const GPTSearch = () => {
         <img src={BG_IMAGE_URL} className='md:h-auto h-screen object-cover'/>
       </div>
       <GPTSearchBar/>
-      <GPTMovieSuggestions/>
+      {/* <GPTMovieSuggestions/> */}
     </div>
   )
 }

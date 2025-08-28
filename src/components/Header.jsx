@@ -60,9 +60,16 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   }
 
+  const handleGotoBrowse = () => {
+    if(isGPTSearchPagePresent) {
+      dispatch(toggleGPTPage());
+    }
+    navigate("/browse");
+  }
+
   return (
     <div className="bg-gradient-to-b from-black flex flex-col md:flex-row md:justify-between">
-      <h1 className="text-red-600 font-bold md:text-5xl text-2xl md:ml-20 mx-auto mt-2">MovieVerse</h1>
+      <h1 className="text-red-600 font-bold md:text-5xl text-2xl md:ml-20 mx-auto mt-2 hover:cursor-pointer" onClick={handleGotoBrowse}>MovieVerse</h1>
       {user && (
         <div className="flex justify-center">
           {isGPTSearchPagePresent && <select className="md:h-10 md:mt-4 mt-0 md:mx-2 mx-1 md:p-2 rounded-sm h-4 p-0 w-9 md:w-24 md:text-sm text-[0.3rem]" onChange={handleLangChange}> 
