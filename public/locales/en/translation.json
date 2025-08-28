@@ -1,0 +1,16 @@
+{
+    "Title": "MovieVerse",
+    "Play": "Play",
+    "MoreInfo": "More info",
+    "TryMovieVerse": "Try MovieVerse",
+    "GPT": "GPT",
+    "Welcome" : "Welcome",
+    "SignOut": "Sign out",
+    "gptInputText" : "what do you want to see today?",
+    "search" : "Search",
+    "HomePage" : "HomePage",
+    "NowPlayingMovies" : "Now Playing Movies",
+    "TopRatedMovies" : "Top Rated Movies",
+    "UpcomingMovies" : "Upcoming Movies",
+    "PopularMovies" : "Popular Movies"
+}

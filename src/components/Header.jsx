@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { removeGPTSearchedMovies, toggleGPTPage } from "../utils/appStoreSlices/gptSlice";
 import { changeLanguage, toggleGuestMode } from "../utils/appStoreSlices/appConfig";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -17,6 +18,7 @@ const Header = () => {
   const isGPTSearchPagePresent = useSelector(store=> store.gpt.showGPTPage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {t, i18n} = useTranslation();
 
   const handleSignOut = () => {
     signOut(auth)
@@ -57,7 +59,8 @@ const Header = () => {
   }
 
   const handleLangChange = (e) => {
-    dispatch(changeLanguage(e.target.value));
+    console.log(e.target.value);
+    i18n.changeLanguage(e.target.value);
   }
 
   const handleGotoBrowse = () => {
@@ -69,13 +72,13 @@ const Header = () => {
 
   return (
     <div className="bg-gradient-to-b from-black flex flex-col md:flex-row md:justify-between">
-      <h1 className="text-red-600 font-bold md:text-5xl text-2xl md:ml-20 mx-auto mt-2 hover:cursor-pointer" onClick={handleGotoBrowse}>MovieVerse</h1>
+      <h1 className="text-red-600 font-bold md:text-5xl text-2xl md:ml-20 mx-auto mt-2 hover:cursor-pointer" onClick={handleGotoBrowse}>{t("Title")}</h1>
       {user && (
         <div className="flex justify-center">
-          {isGPTSearchPagePresent && <select className="md:h-10 md:mt-4 mt-0 md:mx-2 mx-1 md:p-2 rounded-sm h-4 p-0 w-9 md:w-24 md:text-sm text-[0.3rem]" onChange={handleLangChange}> 
+           <select className="md:h-10 md:mt-4 mt-0 md:mx-2 mx-1 md:p-2 rounded-sm h-4 p-0 w-9 md:w-24 md:text-sm text-[0.3rem]" onChange={handleLangChange}> 
             {SUPPORTED_LANGUAGES.map(lang=> <option value={lang?.identifier} key={lang?.identifier}>{lang?.name}</option>)}  
-          </select>}
-          <button className="bg-purple-700 hover:bg-purple-800 rounded-sm font-semibold text-white md:px-3 md:mx-2 mx-1 md:my-4 my-0 md:h-10 h-3 text-[0.3rem] md:text-base px-1" onClick={handleToggleGPTPage}>{isGPTSearchPagePresent ? "HomePage" : "Try MovieVerse-GPT"}</button>
+          </select>
+          <button className="bg-purple-700 hover:bg-purple-800 rounded-sm font-semibold text-white md:px-3 md:mx-2 mx-1 md:my-4 my-0 md:h-10 h-3 text-[0.3rem] md:text-base px-1" onClick={handleToggleGPTPage}>{isGPTSearchPagePresent ? t("HomePage") : `${t("TryMovieVerse")}-${t("GPT")}`}</button>
           {!guestMode && <button className="bg-red-600 hover:bg-red-700 text-white rounded-sm font-semibold md:px-3 md:mx-2 mx-1 px-1 md:h-10 md:my-4 my-0 h-3 md:text-base text-[0.3rem]">
             Welcome {user?.DisplayName}
           </button>}

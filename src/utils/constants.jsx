@@ -29,9 +29,20 @@ export const POSTER_URL = "https://image.tmdb.org/t/p/w780";
 export const BG_IMAGE_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/03ad76d1-e184-4d99-ae7d-708672fa1ac2/web/IN-en-20241111-TRIFECTA-perspective_149877ab-fcbd-4e4f-a885-8d6174a1ee81_large.jpg"
 
 export const SUPPORTED_LANGUAGES = [
-  {identifier : "en", name : "English"},
-  {identifier : "hindi", name : "Hindi"},
-  {identifier : "spanish", name : "Spanish"},
-  {identifier : "portuguese", name : "Portuguese"},
-  {identifier : "french", name : "French"},
-]
+  // {identifier : "en", name : "English"},
+  // {identifier : "hindi", name : "Hindi"},
+  // {identifier : "urdu", name : "Urdu"},
+  // {identifier : "spanish", name : "Spanish"},
+  // {identifier : "portuguese", name : "Portuguese"},
+  // {identifier : "chinese", name : "Chinese"},
+  // {identifier : "french", name : "French"},
+  // {identifier : "russian", name : "Russian"},
+  { identifier: "en", name: "English" },
+  { identifier: "hi", name: "हिन्दी" },
+  { identifier: "es", name: "Español" },
+  { identifier: "pt", name: "Português" },
+  { identifier: "fr", name: "Français" },
+  { identifier: "ur", name: "اردو" },
+  { identifier: "zh", name: "中文" },
+  { identifier: "ru", name: "Русский" }
+];
