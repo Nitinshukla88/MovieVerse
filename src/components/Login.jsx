@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { checkCredentials } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
@@ -18,84 +18,85 @@ const Login = () => {
   const [validateMsg, setValidateMsg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [guestLoading, setGuestLoading] = useState(false);
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
-  const handleSignIn = () => {
-    const message = checkCredentials(
-      email.current.value,
-      password.current.value
-    );
+  const handleSignIn = async () => {
+  const message = checkCredentials(
+    email.current.value,
+    password.current.value
+  );
+  setValidateMsg(message);
+  if (message) return;
 
-    setValidateMsg(message);
-    if (!isSignInForm && message) return;
+  setLoading(true);
+
+  try {
     if (!isSignInForm) {
-      createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
-      )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          updateProfile(auth.currentUser, {
-            displayName: name.current.value,
-            photoURL: PHOTO_URL
-          })
-            .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(
-                addUserData({
-                  Uid: uid,
-                  Email: email,
-                  DisplayName: displayName,
-                  photoURL: photoURL,
-                })
-              );
-            })
-            .catch((error) => {
-              // An error occurred
-              // ...
-            });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setValidateMsg("User registration failed ! Please Try again.");
-        });
-    } else {
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          // navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("Sign in tried !")
-          setValidateMsg("Sign in Credentials are wrong !");
-        });
-    }
-  };
+      );
 
-  const handleAnonymousSignIn = () => {
-    signInAnonymously(auth)
-  .then(() => {
-    navigate("/browse")
+      console.log(userCredential);
+      
+      await updateProfile(auth.currentUser, {
+        displayName: name.current.value,
+        photoURL: PHOTO_URL,
+      });
+
+      const { uid, email: userEmail, displayName, photoURL } = auth.currentUser;
+      dispatch(
+        addUserData({
+          Uid: uid,
+          Email: userEmail,
+          DisplayName: displayName,
+          photoURL: photoURL,
+        })
+      );
+
+    } else {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      );
+    }
+  } catch (error) {
+    console.error("Authentication Error:", error);
+    const errorCode = error.code;
+    if (errorCode === 'auth/email-already-in-use') {
+        setValidateMsg("This email is already registered. Please sign in.");
+    } else if (errorCode === 'auth/invalid-credential') {
+        setValidateMsg("Incorrect email or password. Please try again.");
+    } else {
+        setValidateMsg("Authentication failed. Please try again later.");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+
+  const handleAnonymousSignIn = async () => {
+    setGuestLoading(true);
+  try {
+    await signInAnonymously(auth);
+    navigate("/browse");
     dispatch(toggleGuestMode());
-    // Signed in..
-  })
-  .catch((error) => {
+
+  } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ...
-  });
+    console.error("Anonymous Sign-In Failed:", errorCode, errorMessage);
+  } finally {
+    setGuestLoading(false);
   }
+};
 
   const toggleSignIn = () => {
     setisSignInForm(!isSignInForm);
@@ -134,15 +135,26 @@ const Login = () => {
         <p className="text-red-600 font-semibold ml-20 mt-2">{validateMsg}</p>
         <button
           type="submit"
-          className="bg-red-600 hover:bg-red-700 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm"
+          className="bg-red-600 hover:bg-red-700 text-white w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm flex justify-center items-center disabled:opacity-75"
           onClick={handleSignIn}
+          disabled={loading}
         >
-          {isSignInForm ? "Sign in" : "Sign up"}
+          {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : isSignInForm ? (
+              "Sign in"
+            ) : (
+              "Sign up"
+            )}
         </button>
         {isSignInForm && <p className="text-center text-gray-300 my-2 md:text-base text-sm">OR</p>}
         {isSignInForm && (
-          <button className="bg-white text-red-600 hover:text-red-700 hover:bg-opacity-95 w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm" onClick={handleAnonymousSignIn}>
-            Guest Mode
+          <button className="bg-white text-red-600 hover:text-red-700 hover:bg-opacity-95 w-2/3 px-4 py-2 font-semibold md:ml-20 ml-12 rounded-sm my-2 md:text-base text-sm flex justify-center items-center disabled:opacity-75" onClick={handleAnonymousSignIn} disabled={guestLoading}>
+            {guestLoading ? (
+              <div className="w-5 h-5 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              "Guest Mode"
+            )}
           </button>
         )}
         {isSignInForm && (
@@ -150,7 +162,7 @@ const Login = () => {
         )}
         {isSignInForm ? (
           <p className="text-gray-300 text-center mt-2">
-            New to Netflix?{" "}
+            New to MovieVerse?{" "}
             <span
               className="font-semibold text-white hover:underline cursor-pointer md:text-base text-sm"
               onClick={toggleSignIn}
