@@ -2,8 +2,7 @@
     "Title": "películaverse",
     "Play": "Reproducir",
     "MoreInfo": "Más información",
-    "TryMovieVerse": "Probar películaverse",
-    "GPT": "GPT",
+    "TryMovieVerse": "Probar películaverse-GPTo",
     "Welcome": "Bienvenido",
     "SignOut": "Cerrar sesión",
     "gptInputText": "¿Qué quieres ver hoy?",
@@ -12,5 +11,6 @@
     "NowPlayingMovies": "Películas en cartelera",
     "TopRatedMovies": "Películas mejor calificadas",
     "UpcomingMovies": "Próximas películas",
-    "PopularMovies": "Películas populares"
+    "PopularMovies": "Películas populares",
+    "GoToLoginPage": "Ir a la página de inicio de sesión"
 }

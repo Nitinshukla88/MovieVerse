@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react";
-import lang from "../utils/languageConstants";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { OPTIONS } from "../utils/constants";
 import { addGPTSearchMovies } from "../utils/appStoreSlices/gptSlice";
 import Groq from "groq-sdk";
 import MovieList from "./MovieList";
 import Loader from "./Loader";
+import { useTranslation } from "react-i18next";
 
 const GPTSearchBar = () => {
-  const langkey = useSelector((store) => store.config.lang);
   const dispatch = useDispatch();
   const searchText = useRef(null);
+  const { t } = useTranslation();
   const { gptSearchedMoviesData, gptSearchedMovies } = useSelector(
     (store) => store.gpt
   );
@@ -70,7 +70,7 @@ const GPTSearchBar = () => {
       >
         <input
           type="text"
-          placeholder={lang[langkey].GPTSearchPlaceholder}
+          placeholder={t("gptInputText")}
           className="px-3 md:px-6 text-xs md:text-base md:py-3 border-2 w-4/5"
           ref={searchText}
           required
@@ -79,7 +79,7 @@ const GPTSearchBar = () => {
           className="px-2 md:px-3 md:text-base text-xs py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm mx-3 font-semibold"
           onClick={handleGPTSearchClick}
         >
-          {lang[langkey].Search}
+          {t("search")}
         </button>
       </form>
     </div>

@@ -2,8 +2,7 @@
     "Title": "موویورس",
     "Play": "چلائیں",
     "MoreInfo": "مزید معلومات",
-    "TryMovieVerse": "مووی ورس آزمائیں",
-    "GPT": "جی پی ٹی",
+    "TryMovieVerse": "مووی ورس آزمائیں-GPT",
     "Welcome": "خوش آمدید",
     "SignOut": "سائن آؤٹ",
     "gptInputText": "آپ آج کیا دیکھنا چاہتے ہیں؟",
@@ -12,5 +11,6 @@
     "NowPlayingMovies": "اب چلنے والی فلمیں",
     "TopRatedMovies": "سب سے زیادہ درجہ دی گئی فلمیں",
     "UpcomingMovies": "آنے والی فلمیں",
-    "PopularMovies": "مقبول فلمیں"
+    "PopularMovies": "مقبول فلمیں",
+    "GoToLoginPage": "لاگ ان پیج پر جائیں"
 }

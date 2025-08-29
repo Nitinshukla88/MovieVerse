@@ -2,8 +2,7 @@
     "Title": "filmverse",
     "Play": "Lire",
     "MoreInfo": "Plus d'informations",
-    "TryMovieVerse": "Essayer filmverse",
-    "GPT": "GPT",
+    "TryMovieVerse": "Essayer filmverse-GPT",
     "Welcome": "Bienvenue",
     "SignOut": "Se déconnecter",
     "gptInputText": "Que voulez-vous regarder aujourd'hui ?",
@@ -12,5 +11,6 @@
     "NowPlayingMovies": "Films à l'affiche",
     "TopRatedMovies": "Films les mieux notés",
     "UpcomingMovies": "Films à venir",
-    "PopularMovies": "Films populaires"
+    "PopularMovies": "Films populaires",
+    "GoToLoginPage": "Aller à la page de connexion"
 }

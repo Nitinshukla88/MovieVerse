@@ -2,8 +2,7 @@
     "Title": "filmeverso",
     "Play": "Reproduzir",
     "MoreInfo": "Mais informações",
-    "TryMovieVerse": "Experimentar o filmeverso",
-    "GPT": "GPT",
+    "TryMovieVerse": "Experimentar o filmeverso-GPT",
     "Welcome": "Bem-vindo",
     "SignOut": "Sair",
     "gptInputText": "O que você quer assistir hoje?",
@@ -12,5 +11,6 @@
     "NowPlayingMovies": "Filmes em exibição",
     "TopRatedMovies": "Filmes mais bem avaliados",
     "UpcomingMovies": "Próximos filmes",
-    "PopularMovies": "Filmes populares"
+    "PopularMovies": "Filmes populares",
+    "GoToLoginPage": "Ir para a página de login"
 }

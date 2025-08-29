@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const VideoInfo = ({ movie }) => {
+  const { t } = useTranslation();
   const { original_title, overview } = movie;
   return (
     <div className="absolute md:py-40 py-12 text-white bg-gradient-to-r from-black top-0 left-0 w-screen aspect-video">
@@ -10,10 +12,10 @@ const VideoInfo = ({ movie }) => {
       </div>
       <div className="md:px-28 pl-8 flex md:pt-0 pt-1">
         <button className="md:px-6 md:py-3 md:m-4 text-black bg-white rounded-md hover:bg-opacity-80 px-1 py-0.5 md:text-base text-[0.3rem] ml-5">
-          Play▶️
+          {`${t("Play")}`}▶️
         </button>
         <button className="bg-gray-200 md:px-4 px-1 md:m-4 md:py-3 py-0.5 text-white rounded-md bg-opacity-20 md:text-base text-[0.3rem] mx-1">
-          More info
+          {`${t("MoreInfo")}`}
         </button>
       </div>
     </div>

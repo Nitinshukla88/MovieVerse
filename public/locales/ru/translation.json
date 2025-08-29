@@ -2,8 +2,7 @@
     "Title": "Мувиверс",
     "Play": "Воспроизвести",
     "MoreInfo": "Подробнее",
-    "TryMovieVerse": "Попробовать Мувиверс",
-    "GPT": "ГПТ",
+    "TryMovieVerse": "Попробовать Мувиверс-ГПТ",
     "Welcome": "Добро пожаловать",
     "SignOut": "Выйти",
     "gptInputText": "Что вы хотите посмотреть сегодня?",
@@ -12,5 +11,7 @@
     "NowPlayingMovies": "Сейчас в кино",
     "TopRatedMovies": "Лучшие фильмы",
     "UpcomingMovies": "Скоро в кино",
-    "PopularMovies": "Популярные фильмы"
+    "PopularMovies": "Популярные фильмы",
+    "GoToLoginPage": "Перейти на страницу входа"
+
 }

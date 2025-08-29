@@ -2,8 +2,7 @@
     "Title": "MovieVerse",
     "Play": "Play",
     "MoreInfo": "More info",
-    "TryMovieVerse": "Try MovieVerse",
-    "GPT": "GPT",
+    "TryMovieVerse": "Try MovieVerse-GPT",
     "Welcome" : "Welcome",
     "SignOut": "Sign out",
     "gptInputText" : "what do you want to see today?",
@@ -12,5 +11,6 @@
     "NowPlayingMovies" : "Now Playing Movies",
     "TopRatedMovies" : "Top Rated Movies",
     "UpcomingMovies" : "Upcoming Movies",
-    "PopularMovies" : "Popular Movies"
+    "PopularMovies" : "Popular Movies",
+    "GoToLoginPage" : "Go to Login page"
 }

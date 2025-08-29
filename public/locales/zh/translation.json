@@ -2,8 +2,7 @@
     "Title": "电影宇宙",
     "Play": "播放",
     "MoreInfo": "更多信息",
-    "TryMovieVerse": "尝试 电影宇宙",
-    "GPT": "GPT",
+    "TryMovieVerse": "尝试 电影宇宙-总表",
     "Welcome": "欢迎",
     "SignOut": "退出登录",
     "gptInputText": "你今天想看什么？",
@@ -12,5 +11,6 @@
     "NowPlayingMovies": "正在上映的电影",
     "TopRatedMovies": "最高评分的电影",
     "UpcomingMovies": "即将上映的电影",
-    "PopularMovies": "热门电影"
+    "PopularMovies": "热门电影",
+    "GoToLoginPage": "前往登录页面"
 }
